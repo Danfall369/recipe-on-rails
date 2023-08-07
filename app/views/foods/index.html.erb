@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foods</title>
+  <%= stylesheet_link_tag 'foods', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <div class="container">
+    <%= button_to "Add food", new_user_food_path(user_id: @user.id), method: :get, class: "btn" %>
+
+    <% if @user.foods.empty? %>
+      <p>No food added yet</p>
+    <% else %>
+      <table class="foodTable">
+        <thead>
+          <tr>
+            <th>Food</th>
+            <th>Quantity</th>
+            <th>Measurement Unit</th>
+            <th>Unit Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user.foods.each do |food| %>
+            <tr>
+              <td><%= food.name %></td>
+              <td><%= food.quantity %></td>
+              <td><%= food.measurement_unit %></td>
+              <td>$<%= food.price %></td>
+              <td>
+                <% if current_user == food.user && !@recipe_foods.find { |rf| rf.food_id == food.id } %>
+                  <%= button_to "Delete food", user_food_path(user_id: food.user_id, id: food.id), method: :delete, class: "action-btn" %>
+                <% else %>
+                  <span class="foodUsed">Food is being used in a recipe</span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+    <br />
+    <%= link_to "Back", root_path, class: "btn" %>
+  </div>
+</body>
+</html>

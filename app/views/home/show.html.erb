@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping List</title>
+  <%= stylesheet_link_tag 'shopping_list', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <div class="container">
+    <h2>Shopping List</h2>
+    <% if @shopping_list[:shopping_list].any? %>
+      <div class="items-information">
+        <p>Amount of Food Items to Buy: <%= @shopping_list[:total_items] %></p>
+        <p>Total Value of Food Needed: $<%= @shopping_list[:total_value] %></p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Food</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @shopping_list[:shopping_list].each do |food, details| %>
+            <tr>
+              <td><%= food.name %></td>
+              <td><%= details[:quantity] %></td>
+              <td>$<%= details[:total_price] %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>No ingredients to buy. Your pantry is fully stocked!</p>
+    <% end %>
+  </div>
+</body>
+</html>

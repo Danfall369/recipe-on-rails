@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Public Recipes</title>
+  <%= stylesheet_link_tag 'public_recipe_index', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <div class="container">
+    <h2>Public recipes</h2>
+
+
+  <div class= "public-recipe">
+    <% if @public_recipes.empty? %>
+      <p>No public recipes added yet</p>
+    <% else %>
+      <% @public_recipes.each do |recipe| %>
+        <div class="recipe-card">
+          <div class="name-user">
+            <h3><%= link_to recipe.name, user_recipe_path(user_id: recipe.user_id, id: recipe.id), class: "recipe-name" %></h3>
+            <p>By: <%= recipe.user.name %></p>
+          </div>
+          <div class="data">
+            <p class="total-items">Total food items: <%= recipe.recipe_foods_count %> </p>
+            <p class="total-items">Total price: $<%= recipe.total_price %></p>
+            <% if current_user == recipe.user  %>
+              <div class= "actions">
+                <%= button_to "Delete recipe", user_recipe_path(user_id: recipe.user_id, id: recipe.id), method: :delete, class: "btn" %>
+              </div>
+            <% end %>
+          </div>
+          <hr />
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <br />
+  <%= link_to "Back", root_path, class: "btn" %>
+  </div>
+</body>
+</html>

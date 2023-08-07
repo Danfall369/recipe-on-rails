@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Recipe Ingredient</title>
+  <%= stylesheet_link_tag 'recipe_food_edit', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <div class="container">
+    <%= form_with(model: @recipe_food, url: user_recipe_recipe_food_path(current_user, @recipe.id, @recipe_food), local: true, method: :patch) do |form| %>
+      <h1 class="comments-form-title">Edit <%= @recipe_food.food.name %></h1>
+      <div class="field">
+        <div>
+          <%= form.label :quantity %>
+          <%= form.text_field :quantity, type: :number, step: "any" %>
+        </div>
+        <%= form.hidden_field :food_id, value: @recipe_food.food_id %>
+      </div>
+      <%= form.submit 'Update Ingredient', class: "submit-btn" %>
+    <% end %>
+  </div>
+</body>
+</html>

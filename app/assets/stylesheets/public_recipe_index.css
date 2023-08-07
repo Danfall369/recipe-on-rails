@@ -1,0 +1,98 @@
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+h2 {
+  color: #333;
+  text-align: center;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+h3 {
+  color: #333;
+  margin-top: 0;
+}
+
+p {
+  color: #666;
+  margin: 0;
+}
+
+.public-recipe {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+}
+
+.public-recipe p {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.recipe-card {
+  display: flex;
+  margin-bottom: 1rem;
+  border-bottom: solid 1px #ddd;
+  padding-bottom: 1.5rem;
+}
+
+.name-user {
+  width: 40%;
+}
+
+.data {
+  width: 60%;
+}
+
+.recipe-name {
+  font-size: 1.2em;
+  color: #4caf50;
+}
+
+.total-items {
+  margin-bottom: 0.5rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: #394d39;
+}
+
+@media (max-width: 600px) {
+  .container {
+    max-width: 100%;
+    margin: 20px;
+  }
+}

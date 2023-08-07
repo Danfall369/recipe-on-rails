@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Food Item</title>
+  <%= stylesheet_link_tag 'foods_new', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <div class="container">
+    <%= form_with model: @food, url: user_foods_path do |form| %>
+      <h2>Create Food Item</h2>
+
+      <div class="field">
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= form.label :measurement_unit %>
+        <%= form.select :measurement_unit, options_for_select(['Miligrams', 'Grams', 'Kilograms']), {}, { placeholder: "Select a Measurement Unit" } %>
+      </div>
+
+      <div class="field">
+        <%= form.label :price %>
+        <%= form.text_field :price, type: :number, step: "any" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :quantity %>
+        <%= form.text_field :quantity, type: :number, step: "any" %>
+      </div>
+
+      <%= form.submit 'Create Item', class: "btn" %>
+    <% end %>
+  <br />
+  <%= link_to "Back", user_foods_path(current_user), class: "btn" %>
+
+  </div>
+</body>
+</html>

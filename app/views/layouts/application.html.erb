@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Recipe On Rails</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" type="image/png" href="<%= asset_path('Recipe.png') %>">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+
+  
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="<%= asset_path('logo.png') %>" alt="Logo" width="40px">
+      <h1>Recipe On Rails</h1>
+    </div>  
+    <nav>
+      <ul>
+        <% if user_signed_in? %>
+          <li>Welcome, <%= current_user.name %></li>
+          <li><%= link_to "Foods", user_foods_path(current_user) %></li>
+          <li><%= link_to "Recipes", user_recipes_path(current_user) %></li>
+          <li><%= link_to "Public Recipes", user_public_recipes_path(current_user) %></li>
+          <li><%= link_to "Shopping List", home_path(current_user) %></li>
+          <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+          <li><%= button_to "Sign out", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Flash Notice -->
+  <% if notice.present? %>
+    <p class="notice"><%= notice %></p>
+  <% end %>
+
+  <!-- Flash Alert -->
+  <% if alert.present? %>
+    <p class="alert"><%= alert %></p>
+  <% end %>
+
+  <%= yield %>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <%= stylesheet_link_tag 'home_index', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <div class="container">
+    <div class= "welcome">
+      <h1>Welcome to Recipe App</h1>
+      <p>Explore and share your favorite recipes with others.</p>
+      <p>
+        <%= link_to "Browse Foods", user_foods_path(current_user), class: "btn" %>
+        <%= link_to "Browse Recipes", user_recipes_path(current_user), class: "btn" %>
+        <%= link_to "Browse Public Recipes", user_public_recipes_path(current_user), class: "btn" %>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

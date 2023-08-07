@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Recipe</title>
+  <%= stylesheet_link_tag 'recipe_new', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <div class="container">
+    <%= form_with model: @recipe, url: user_recipes_path do |form| %>
+      <h2>Create Recipe</h2>
+
+      <div class="field">
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= form.label :preparation_time  %>
+        <%= form.text_field :preparation_time, type: :number, step: "any" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :cooking_time %>
+        <%= form.text_field :cooking_time, type: :number, step: "any" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :description %>
+        <%= form.text_field :description %>
+      </div>
+
+      <div class="field">
+        <%= form.label :public %>
+        <%= form.hidden_field :public, value: false %>
+        <%= form.check_box :public %>
+      </div>
+
+      <%= form.submit 'Create Recipe', class: "btn" %>
+    <% end %>
+
+    <br />
+
+    <%= link_to "Back", user_recipes_path(current_user), class: "btn" %>
+  </div>
+</body>
+</html>

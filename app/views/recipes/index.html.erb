@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipes</title>
+  <%= stylesheet_link_tag 'recipe_index', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <div class="container">
+    <%= button_to "Add recipe", new_user_recipe_path(user_id: @user.id), method: :get, class: "btn" %>
+    <br />
+    <% if @user.recipes.empty? %>
+      <p>No recipes added yet</p>
+    <% else %>
+      <% @user.recipes.each do |recipe| %>
+        <div class="recipe">
+        <div class="name-btn">
+          <p class="recipe-title"><%= link_to recipe.name, user_recipe_path(user_id: recipe.user_id, id: recipe.id), class: "recipe-name" %></p>
+          <% if current_user == recipe.user  %>
+            <div class= "actions">
+              <%= button_to "Delete recipe", user_recipe_path(user_id: recipe.user_id, id: recipe.id), method: :delete, class: "btn" %>
+            </div>
+          <% end %>
+        </div>
+        <p class="recipe-description"><%= recipe.description %></p>
+        </div>
+      <% end %>
+    <% end %>
+    <br />
+    <%= link_to "Back", root_path, class: "btn" %>
+  </div>
+</body>
+</html>
